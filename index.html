@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Digital Vault - Secure Storage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="login-screen" class="login-screen">
+        <div class="login-card">
+            <div class="login-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2>Welcome Back</h2>
+            <p>Sign in to access your personal digital vault.</p>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email address" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="submit" class="btn btn-primary btn-lg">Login</button>
+            </form>
+            <p class="login-hint">Demo credentials: demo@vault.com / password123</p>
+            <div id="login-error" class="login-error"></div>
+            <div class="creator-signature login-signature" aria-label="Created by SEMSANI_HARSHA_VARDHAN">
+                <span class="signature-line">Created by</span>
+                <span class="signature-name">SEMSANI_HARSHA_VARDHAN</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-container" class="app-container hidden">
+        <!-- Navigation -->
+        <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-vault"></i>
+                <span>Personal Digital Vault</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#dashboard" class="nav-link" data-section="dashboard">Dashboard</a></li>
+                <li><a href="#profile" class="nav-link" data-section="profile">Profile</a></li>
+                <li><a href="#settings" class="nav-link" data-section="settings">Settings</a></li>
+            </ul>
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Your Personal Digital Vault</h1>
+                <p>Secure storage for your most important information</p>
+                <button class="btn btn-primary btn-lg" onclick="navigate('dashboard')">
+                    <i class="fas fa-lock"></i> Enter Vault
+                </button>
+   
+                <div class="feature-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Multi-Device</h3>
+                    <p>Access anywhere, anytime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section">
+        <div class="container">
+            <h2>Your Vault Dashboard</h2>
+            <div class="dashboard-grid">
+                <!-- Notes -->
+                <div class="vault-card" onclick="openModule('notes')">
+                    <div class="card-icon">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <h3>Encrypted Notes</h3>
+                    <p>Store confidential notes and thoughts</p>
+                    <div class="card-stats">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">notes</span>
+                    </div>
+                </div>
+
+                <!-- Documents -->
+                <div class="vault-card" onclick="openModule('documents')">
+                    <div class="card-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Important Documents</h3>
+                    <p>Backup vital documents securely</p>
+                    <div class="card-stats">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">documents</span>
+                    </div>
+                </div>
+
+                <!-- Passwords -->
+                <div class="vault-card" onclick="openModule('passwords')">
+                    <div class="card-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Password Manager</h3>
+                    <p>Manage all passwords in one place</p>
+                    <div class="card-stats">
+                        <span class="stat-number">24</span>
+                        <span class="stat-label">passwords</span>
+                    </div>
+                </div>
+
+                <!-- Media -->
+                <div class="vault-card" onclick="openModule('media')">
+                    <div class="card-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Photos & Videos</h3>
+                    <p>Safe backup for your memories</p>
+                    <div class="card-stats">
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">files</span>
+                    </div>
+                </div>
+
+                <!-- Emergency Contacts -->
+                <div class="vault-card" onclick="openModule('contacts')">
+                    <div class="card-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Emergency Contacts</h3>
+                    <p>Keep critical contact information</p>
+                    <div class="card-stats">
+                        <span class="stat-number">7</span>
+                        <span class="stat-label">contacts</span>
+                    </div>
+                </div>
+
+                <!-- Cloud Backup -->
+                <div class="vault-card" onclick="openModule('backup')">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Cloud Backup</h3>
+                    <p>Automatic backup status & settings</p>
+                    <div class="card-stats">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">synced</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Container -->
+    <div id="modules-container"></div>
+
+    <!-- Profile Section -->
+    <section id="profile" class="section">
+        <div class="container">
+            <h2>Your Profile</h2>
+            <div class="profile-container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3>John Doe</h3>
+                        <p>john.doe@email.com</p>
+                    </div>
+                    <div class="profile-info">
+                        <div class="info-item">
+                            <label>Account Status:</label>
+                            <span class="status-badge status-active">Active</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Storage Used:</label>
+                            <span>2.4 GB of 100 GB</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Last Backup:</label>
+                            <span>Today at 10:30 AM</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Account Created:</label>
+                            <span>January 15, 2024</span>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-key"></i> Change Password
+                        </button>
+                    </div>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <h4>Total Items</h4>
+                        <p class="big-number">207</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Security Score</h4>
+                        <p class="big-number">95%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Last Login</h4>
+                        <p class="big-number">Now</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section id="settings" class="section">
+        <div class="container">
+            <h2>Settings</h2>
+            <div class="settings-container">
+                <div class="settings-card">
+                    <h3>Security Settings</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Two-Factor Authentication</label>
+                            <p>Add an extra layer of security</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Biometric Login</label>
+                            <p>Use fingerprint or face recognition</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Backup Settings</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Automatic Backup</label>
+                            <p>Backup every 24 hours</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Cloud Sync</label>
+                            <p>Sync data across all devices</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Privacy Settings</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Data Collection</label>
+                            <p>Help improve our service</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Read Receipts</label>
+                            <p>Allow app to track last access</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-card danger-zone">
+                    <h3>Danger Zone</h3>
+                    <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Delete All Data
+                    </button>
+                    <button class="btn btn-danger" data-action="logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="creator-signature" aria-label="Created by SEMSANI_HARSHA_VARDHAN">
+                <span class="signature-line">Created by</span>
+                <span class="signature-name">SEMSANI_HARSHA_VARDHAN</span>
+            </div>
+            <p>&copy; 2026 Personal Digital Vault. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
