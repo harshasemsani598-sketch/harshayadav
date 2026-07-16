@@ -50,6 +50,46 @@
                     </div>
                 </div>
             </div>
+            <div class="container">
+    <h1>Welcome to My Website</h1>
+    <p>Hello! I am Harsha. This website is hosted online.</p>
+
+    <button onclick="showMessage()">Click Me</button>
+
+    <p id="message"></p>
+</div>
+
+<style>
+.container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 30px;
+}
+
+h1 {
+    color: #0077cc;
+}
+
+button {
+    background: #0077cc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #005fa3;
+}
+</style>
+
+<script>
+function showMessage() {
+    document.getElementById("message").innerHTML =
+        "Thanks for visiting my website!";
+}
+</script>
         </header>
 
         <main>
