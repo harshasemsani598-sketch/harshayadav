@@ -26,5 +26,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Bubble Effect on Click
+    const bubblesContainer = document.getElementById('bubblesContainer');
+    
+    document.addEventListener('click', (e) => {
+        createBubbles(e.clientX, e.clientY);
+    });
+
+    document.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        createBubbles(touch.clientX, touch.clientY);
+    }, { passive: true });
+
+    function createBubbles(x, y) {
+        const bubbleCount = Math.random() > 0.5 ? 3 : 5;
+        
+        for (let i = 0; i < bubbleCount; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            const size = Math.random() * 40 + 20;
+            const floatX = (Math.random() - 0.5) * 100;
+            
+            bubble.style.left = (x - size / 2) + 'px';
+            bubble.style.top = (y - size / 2) + 'px';
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.setProperty('--float-x', floatX + 'px');
+            
+            bubblesContainer.appendChild(bubble);
+            
+            setTimeout(() => bubble.remove(), 3000);
+        }
+    }
 });
 
